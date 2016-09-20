@@ -85,7 +85,11 @@ public class BadgeView extends TextView {
     public void setBackground(int dipRadius, int badgeColor) {
         int radius = dip2Px(dipRadius);
         float[] radiusArray = new float[] { radius, radius, radius, radius, radius, radius, radius, radius };
-
+        //RoundRectShape圆角矩形 常用作一些组件的背景 指定一个外部（圆角）矩形 和 一个 可选的 内部（圆角）矩形。
+        //参数1:包含8个弧度值，指定外部圆角矩形的 4个角部的弧度及 ：new float[] {l, l, t, t, r, r, b, b};
+        //前2个 左上角， 3 4 ， 右上角， 56， 右下， 78 ，左下，如果没弧度的话，传入null即可
+        //参数2:指定外部矩形4条边 与内部矩形的4条边的个距离，也用RectF的方式指定。
+        //参数3://同第一个参数。
         RoundRectShape roundRect = new RoundRectShape(radiusArray, null, null);
         ShapeDrawable bgDrawable = new ShapeDrawable(roundRect);
         bgDrawable.getPaint().setColor(badgeColor);
@@ -223,7 +227,7 @@ public class BadgeView extends TextView {
             target.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-            parentContainer.addView(badgeContainer, groupIndex, parentlayoutParams);
+            parentContainer.addView(badgeContainer, groupIndex, parentLayoutParams);
             badgeContainer.addView(target);
 
             badgeContainer.addView(this);
